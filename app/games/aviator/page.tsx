@@ -13,15 +13,19 @@ export default function AviatorPage() {
   const [multiplier, setMultiplier] = useState(1.0)
   const [result, setResult] = useState<{ crashAt: number; won: boolean; winAmount: number; net: number } | null>(null)
   const [balance, setBalance] = useState<number | null>(null)
+  const [isMounted, setIsMounted] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
+    setIsMounted(true)
     fetch('/api/auth/me').then(r => r.json()).then(d => {
       if (!d.user) window.location.href = '/login'
       else setBalance(d.user.fitPoints)
     })
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
   }, [])
+
+  if (!isMounted) return null
 
   async function launch() {
     if (flying || !balance || balance < bet) return
