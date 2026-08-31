@@ -213,14 +213,7 @@ export default function CratesPage() {
             const isExploding = opening === tier && animPhase === 'exploding'
 
             return (
-              <div key={tier} className="crate-card card" style={{
-                textAlign: 'center',
-                border: `1px solid ${canAfford ? info.color + '33' : 'var(--border)'}`,
-                padding: '1.8rem 1.2rem',
-                cursor: canAfford && !opening ? 'pointer' : 'default',
-                transition: 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)',
-                opacity: (!canAfford && !opening) ? 0.5 : 1,
-              }}
+              <div key={tier} className="crate-card"
                 onClick={() => canAfford && !opening && openCrate(tier)}
                 style={{
                   background: isOpening ? `radial-gradient(ellipse at center, ${info.glow} 0%, var(--surface) 70%)` : 'var(--surface)',

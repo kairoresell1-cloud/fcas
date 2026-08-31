@@ -159,9 +159,8 @@ export default function AviatorPage() {
         <div ref={canvasRef} className="aviator-canvas" style={{
           height: '300px', marginBottom: '1.2rem',
           boxShadow: canvasGlow,
-          transition: 'box-shadow 0.5s ease',
           border: `1px solid ${phase === 'flying' ? 'rgba(59,130,246,0.3)' : phase === 'won' ? 'rgba(0,255,136,0.3)' : phase === 'crashed' ? 'rgba(255,68,85,0.3)' : 'var(--border)'}`,
-          transition: 'border-color 0.4s ease',
+          transition: 'box-shadow 0.5s ease, border-color 0.4s ease',
         }}>
           {/* Grid lines */}
           <div style={{
