@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  username     String     @unique
+  email        String     @unique
+  password     String
+  fitPoints    Int        @default(0)
+  totalEarned  Int        @default(0)
+  createdAt    DateTime   @default(now())
+  activities   Activity[]
+  inventory    Item[]
+  transactions Transaction[]
+}
+
+model Activity {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  duration  Int
+  points    Int
+  createdAt DateTime @default(now())
+}
+
+model Item {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  name       String
+  rarity     String
+  category   String
+  imageUrl   String?
+  obtainedAt DateTime @default(now())
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  amount    Int
+  reason    String
+  createdAt DateTime @default(now())
+}

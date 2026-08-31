@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --neon: #00ff88;
+  --neon-dim: #00cc6a;
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e8e8f0;
+  --text-dim: #8888aa;
+  --gold: #ffd700;
+  --purple: #9b59b6;
+  --red: #e74c3c;
+  --blue: #3498db;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.glow {
+  text-shadow: 0 0 20px var(--neon), 0 0 40px var(--neon);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.btn-primary {
+  background: var(--neon);
+  color: #000;
+  font-weight: 700;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--neon-dim); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--neon);
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  border: 1px solid var(--neon);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: rgba(0,255,136,0.1); }
+
+.input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  font-size: 0.95rem;
+}
+.input:focus { border-color: var(--neon); }
+
+.rarity-common { color: #aaa; }
+.rarity-rare { color: var(--blue); }
+.rarity-epic { color: var(--purple); }
+.rarity-legendary { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 5px var(--neon); }
+  50% { box-shadow: 0 0 20px var(--neon), 0 0 40px var(--neon); }
+}
+
+@keyframes spin-slot {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-200%); }
+}
+
+@keyframes fly-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.fly-up { animation: fly-up 0.3s ease forwards; }
